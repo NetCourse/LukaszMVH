@@ -23,11 +23,12 @@ namespace IntelligentHome
             //Define delegates(actions) as routines
             //Action<string> lightColorDefaultSetting = Console.WriteLine;
             //Build a house
-            var home = HouseBuilder.BuildHome();
-
             //Equip all rooms
-            HouseBuilder.EquipAllRooms(home,"light");
-            HouseBuilder.EquipAllRooms(home,"doorlock");
+            var home = new HouseBuilder()
+                .AddRooms()
+                .EquipAllRooms("light")
+                .EquipAllRooms("doorlock")
+                .Build();
 
             //Add Custom devices
             deviceManager.AssignDevice(home.FirstOrDefault(room => room.Name == "Bathroom"), new TV("SonyBravia2"));

@@ -11,10 +11,10 @@ namespace VirtualHome
 
         public void Assign(Room room);
 
-        public void TurnOnDevice();
+        public void TurnOn();
 
-        public void TurnOffDevice();
+        public void TurnOff();
 
-        public void InvokeCustomAction();
+        public void InvokeCustomAction(string action);
     }
 }

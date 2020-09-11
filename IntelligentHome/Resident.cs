@@ -11,13 +11,13 @@ namespace IntelligentHome
     {
         //Create event
         //1+2. Define delegate and event based on delegate
-        public event EventHandler<EventArgs> EnterHome;
-        public event EventHandler<EventArgs> ChangeRoom;
+        public event EventHandler<EventArgs> HomeEntered;
+        public event EventHandler<EventArgs> RoomChanged;
         //3. Raise event
         protected virtual void OnEnterHome(EventArgs e)
         {
-            if (EnterHome != null)
-                EnterHome(this, EventArgs.Empty);   
+            if (HomeEntered != null)
+                HomeEntered(this, EventArgs.Empty);   
         }
         public string Name { get; }
         public Room Localization { get; private set; }
@@ -27,7 +27,7 @@ namespace IntelligentHome
             Name = residentName;
         }
 
-        public void enterHome(List<Room> home) 
+        public void EnterHome(List<Room> home) 
         {
             var enumName = Rooms.Hallway.ToString();
             Localization = home.FirstOrDefault(room => enumName == room.Name);

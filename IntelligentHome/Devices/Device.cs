@@ -6,12 +6,12 @@ using System.Text;
 namespace VirtualHome
 {
 
-    abstract class Device : IDevice
+    abstract class Device
     {
 
         public string Name { get; private set; }
 
-        public bool Status { get; private set; }
+        public bool IsPowered { get; private set; }
 
         public Room Location { get; private set; }
 
@@ -24,23 +24,20 @@ namespace VirtualHome
         }
         public void Assign(Room room) => Location = room;
 
-        public void TurnOnDevice()
+        public void TurnOn()
         {
-            Status = true;
+            IsPowered = true;
             Console.WriteLine("{0} {1} is tuned on", Name, this.GetType().ToString().ToLower());
         }
 
-        public void TurnOffDevice()
+        public void TurnOff()
         {
-            Status = false;
+            IsPowered = false;
             Console.WriteLine("{0} {1} is tuned off", Name, this.GetType().ToString().ToLower() );
         }
 
         public abstract void InvokeCustomAction(string actionName);
 
-        public void InvokeCustomAction()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
