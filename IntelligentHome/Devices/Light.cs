@@ -7,15 +7,16 @@ namespace VirtualHome.Devices
 {
     class Light : Device
     {
-        private string _color = "yellow";
+        public string Color { get; private set; }
 
         public Light(string deviceName) : base(deviceName)
         {
+            Color = "yellow";
         }
 
         public void SetColor(string color)
         {
-            _color = color;
+            Color = color;
             Console.WriteLine("Ok, {0} light on {1}", Name, color);
         }
 

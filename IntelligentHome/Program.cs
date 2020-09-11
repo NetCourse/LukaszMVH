@@ -15,19 +15,19 @@ namespace IntelligentHome
             Console.WriteLine("Hello World!");
 
             //Create Residents
-            Resident Janusz = new Resident("Janusz");
+            Resident Janek = new Resident("Janek");
 
             //Init DeviceManager
             DeviceManager deviceManager = DeviceManager.CreateInstance;
 
-        //Define delegates(actions) as routines
-        Action<string> lightColorDefaultSetting = Console.WriteLine;
+            //Define delegates(actions) as routines
+            //Action<string> lightColorDefaultSetting = Console.WriteLine;
             //Build a house
-            var home = BuildHouse.BuildHome();
+            var home = HouseBuilder.BuildHome();
 
             //Equip all rooms
-            BuildHouse.EquipAllRooms(home,"light");
-            BuildHouse.EquipAllRooms(home,"doorlock");
+            HouseBuilder.EquipAllRooms(home,"light");
+            HouseBuilder.EquipAllRooms(home,"doorlock");
 
             //Add Custom devices
             deviceManager.AssignDevice(home.FirstOrDefault(room => room.Name == "Bathroom"), new TV("SonyBravia2"));
@@ -60,15 +60,14 @@ namespace IntelligentHome
                 Console.WriteLine($"- {device.Name} in {device.Location.Name}");
             }
 
-            foreach(Light device in deviceManager.deviceList.Where(device => device is Light))
-            {
-                turnOnAllLight += device.TurnOnDevice;
-                lightColorDefaultSetting += device.SetColor;
-            }
-                
+            //foreach (Light device in deviceManager.deviceList.Where(device => device is Light))
+            //{
+            //    turnOnAllLight += device.TurnOnDevice;
+            //    lightColorDefaultSetting += device.SetColor;
+            //}
+
             //invoke 
-            turnOnAllLight();
-            lightColorDefaultSetting("yellow");
+            //lightColorDefaultSetting("yellow");
 
             // bll => console app day 1 (patterns (singleton (device manager), ?factory? (device factory) ), DI (deviceManager => Rooms)
             // +

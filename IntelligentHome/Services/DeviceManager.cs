@@ -10,10 +10,9 @@ namespace VirtualHome.Devices
     class DeviceManager
     {
         private static DeviceManager _instance = new DeviceManager();
-        //repository pattern??
+        //proteza ze tu nie ma bazy... poki co
         public IList<Device> deviceList = new List<Device>();
-        //proteza ze tu nie ma bazy
-
+        
         private DeviceManager()
         {
             Console.WriteLine("Device Manager Created");
@@ -57,5 +56,6 @@ namespace VirtualHome.Devices
             }
             return devices.FirstOrDefault() as T;
         }
+
     }
 }

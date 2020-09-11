@@ -6,15 +6,19 @@ using VirtualHome;
 
 namespace IntelligentHome
 {
-    //Create event
-    //1. Define delegate
-    public delegate void EnterHomeEventHandler(object source, EventArgs args);
-    //2. Define event based on delegate
-    public event EnterHomeEventHandler EnterHome;
-    //3. Raise event
 
     class Resident
     {
+        //Create event
+        //1+2. Define delegate and event based on delegate
+        public event EventHandler<EventArgs> EnterHome;
+        public event EventHandler<EventArgs> ChangeRoom;
+        //3. Raise event
+        protected virtual void OnEnterHome(EventArgs e)
+        {
+            if (EnterHome != null)
+                EnterHome(this, EventArgs.Empty);   
+        }
         public string Name { get; }
         public Room Localization { get; private set; }
 
@@ -25,7 +29,8 @@ namespace IntelligentHome
 
         public void enterHome(List<Room> home) 
         {
-            Localization = home.Where(room => Rooms.Hallway.Equals(room.Name));
+            var enumName = Rooms.Hallway.ToString();
+            Localization = home.FirstOrDefault(room => enumName == room.Name);
         }
 
 

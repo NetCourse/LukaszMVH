@@ -7,7 +7,7 @@ using VirtualHome.Devices;
 
 namespace VirtualHome.BLL
 {
-    static class BuildHouse
+    static class HouseBuilder
     {
         public static List<Room> BuildHome()
         {

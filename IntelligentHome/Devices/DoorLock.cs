@@ -7,10 +7,8 @@ namespace VirtualHome.Devices
 {
     class DoorLock : Device
     {
-        private bool _doorLocked = false;
-        public DoorLock(string doorLockName) : base(doorLockName)
-        {
-        }
+        private bool _doorLocked;
+        public DoorLock(string doorLockName) : base(doorLockName) { }
 
         public void Lock()
         {
