@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VirtualHome
+namespace VirtualHome.Models
 {
-    class TV : Device
+    public class TV
 
     {
-        private int _currentChannel;
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public bool IsPowered { get; set; }
+
+        public virtual Room Location { get; set; }
+
+        private int CurrentChannel { get; set; }
         
     }
 }

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VirtualHome;
-using VirtualHome.Devices;
 
-namespace IntelligentHome
+namespace VirtualHome.Models
 {
-    class Room
+    public class Room
     {
-        public string Name { get; }
-        public Rooms Type { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
 
     }
 }

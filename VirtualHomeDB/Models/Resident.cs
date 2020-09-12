@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VirtualHome;
 
-namespace IntelligentHome
+namespace VirtualHome.Models
 {
 
-    class Resident
+    public class Resident
     {
  
-        public string Name { get; }
-        public Room Localization { get; private set; }
+        public Guid  ResidentId { get; set; }
+        public string Name { get; set; }
+        public Room Localization { get; set; }
 
     }
 }

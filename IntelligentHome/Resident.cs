@@ -12,7 +12,6 @@ namespace IntelligentHome
         //Create event
         //1+2. Define delegate and event based on delegate
         public event EventHandler<EventArgs> HomeEntered;
-        public event EventHandler<EventArgs> RoomChanged;
         //3. Raise event
         protected virtual void OnEnterHome(EventArgs e)
         {

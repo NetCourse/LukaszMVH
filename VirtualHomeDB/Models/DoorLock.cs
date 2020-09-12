@@ -1,8 +1,17 @@
 ﻿using System;
 
-namespace VirtualHome.Devices
+namespace VirtualHome.Models
 {
-    class DoorLock : Device
+    public class DoorLock
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public bool IsPowered { get; set; }
+
+        public virtual Room Location { get; set; }
+ 
+        public bool Lock { get; set; }
     }
 }

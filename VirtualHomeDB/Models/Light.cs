@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VirtualHome.Devices;
-
-namespace VirtualHome.Devices
+﻿namespace VirtualHome.Models
 {
-    class Light : Device
+    public class Light
     {
-        public string Color { get; private set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public bool IsPowered { get; set; }
+
+        public virtual Room Location { get; set; }
+
+        public string Color { get; set; }
     }
 }
