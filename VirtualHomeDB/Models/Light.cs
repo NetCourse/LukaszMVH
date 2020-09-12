@@ -1,8 +1,10 @@
-﻿namespace VirtualHome.Models
+﻿using System;
+
+namespace VirtualHome.Models
 {
     public class Light
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 
