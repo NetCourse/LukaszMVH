@@ -3,7 +3,7 @@ using VirtualHome.Models;
 
 namespace VirtualHomeDAL
 {
-    class VirtualHomeDbContext : DbContext
+    public class VirtualHomeDbContext : DbContext
     {
         public DbSet<Resident> Resident { get; set; }
         public DbSet<DoorLock> DoorLock { get; set; }

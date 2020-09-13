@@ -1,30 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using VirtualHome.Models;
 
 namespace VirtualHomeDAL.Repositories
 {
     public class LightRepository : ILightRepository
     {
+        private VirtualHomeDbContext dbContext;
+        public LightRepository(VirtualHomeDbContext context = null)
+        {
+            if (context == null)
+                dbContext = new VirtualHomeDbContext();
+            else
+                dbContext = context;
+        }
         public void Add(Light entity)
         {
-            throw new NotImplementedException();
+            dbContext.Light.Add(entity);
+            dbContext.SaveChanges();
         }
 
         public void Delete(Light entity)
         {
-            throw new NotImplementedException();
+            dbContext.Light.Remove(entity);
+            dbContext.SaveChanges();
         }
 
-        public Light GetAll()
+        public IEnumerable<Light> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Light.ToList();
         }
 
-        public Light GetOne(Guid id)
+        public Light GetOne(string name)
         {
-            throw new NotImplementedException();
+            return dbContext.Light.FirstOrDefault(light => light.Name == name);
         }
     }
 }

@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VirtualHome.Models;
 
 namespace VirtualHomeDAL.Repositories
 {
     public class DoorLockRepository : IDoorLockRepository
     {
+        private VirtualHomeDbContext dbContext;
+        public DoorLockRepository(VirtualHomeDbContext context=null) {
+            if (context == null) 
+                dbContext = new VirtualHomeDbContext();
+            else
+                dbContext = context;
+        } 
         public void Add(DoorLock entity)
         {
-            throw new NotImplementedException();
+            dbContext.DoorLock.Add(entity);
+            dbContext.SaveChanges();
         }
 
         public void Delete(DoorLock entity)
         {
-            throw new NotImplementedException();
+            dbContext.DoorLock.Remove(entity);
+            dbContext.SaveChanges();
         }
 
-        public DoorLock GetAll()
+        public IEnumerable<DoorLock> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.DoorLock.ToList();
         }
 
-        public DoorLock GetOne(Guid id)
+        public DoorLock GetOne(string name)
         {
-            throw new NotImplementedException();
+            return dbContext.DoorLock.FirstOrDefault(doorlock => doorlock.Name == name);
         }
+
     }
 }

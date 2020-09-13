@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VirtualHome.Models;
 
 namespace VirtualHomeDAL.Repositories
 {
     public class ResidentRepository : IResidentRepository
     {
+        private VirtualHomeDbContext dbContext;
+        public ResidentRepository(VirtualHomeDbContext context = null)
+        {
+            if (context == null)
+                dbContext = new VirtualHomeDbContext();
+            else
+                dbContext = context;
+        }
         public void Add(Resident entity)
         {
-            throw new NotImplementedException();
+            dbContext.Resident.Add(entity);
+            dbContext.SaveChanges();
         }
 
         public void Delete(Resident entity)
         {
-            throw new NotImplementedException();
+            dbContext.Resident.Remove(entity);
+            dbContext.SaveChanges();
         }
 
-        public Resident GetAll()
+        public IEnumerable<Resident> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Resident.ToList();
         }
 
-        public Resident GetOne(Guid id)
+        public Resident GetOne(string name)
         {
-            throw new NotImplementedException();
+            return dbContext.Resident.FirstOrDefault(resident => resident.Name == name);
         }
     }
 }

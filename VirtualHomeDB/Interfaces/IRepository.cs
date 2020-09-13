@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using VirtualHome.Models;
 
 namespace VirtualHomeDAL
@@ -8,8 +10,8 @@ namespace VirtualHomeDAL
         void Add(TEntity entity); 
         void Delete(TEntity entity);
 
-        TEntity GetAll();
+        IEnumerable<TEntity> GetAll();
 
-        TEntity GetOne(Guid id);
+        TEntity GetOne(string name);
     }
 }

@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VirtualHome.Models;
 
 namespace VirtualHomeDAL.Repositories
 {
     public class TVRepository : ITVRepository
     {
+        private VirtualHomeDbContext dbContext;
+        public TVRepository(VirtualHomeDbContext context = null)
+        {
+            if (context == null)
+                dbContext = new VirtualHomeDbContext();
+            else
+                dbContext = context;
+        }
         public void Add(TV entity)
         {
-            throw new NotImplementedException();
+            dbContext.TV.Add(entity);
+            dbContext.SaveChanges();
         }
 
         public void Delete(TV entity)
         {
-            throw new NotImplementedException();
+            dbContext.TV.Remove(entity);
+            dbContext.SaveChanges();
         }
 
-        public TV GetAll()
+        public IEnumerable<TV> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.TV.ToList();
         }
 
-        public TV GetOne(Guid id)
+        public TV GetOne(string name)
         {
-            throw new NotImplementedException();
+            return dbContext.TV.FirstOrDefault(tv => tv.Name == name);
         }
     }
 }
