@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VirtualHome;
+using VirtualHome.BLL;
+using VirtualHomeDAL.Repositories;
 
 namespace IntelligentHome
 {
@@ -12,7 +14,7 @@ namespace IntelligentHome
         //Create event
         //1+2. Define delegate and event based on delegate
         public event EventHandler<EventArgs> HomeEntered;
-        //3. Raise event
+        
         protected virtual void OnEnterHome(EventArgs e)
         {
             if (HomeEntered != null)

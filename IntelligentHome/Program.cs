@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtualHome;
@@ -13,12 +14,18 @@ namespace IntelligentHome
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<TV, VirtualHome.Models.TV>();
+                cfg.CreateMap<DoorLock, VirtualHome.Models.DoorLock>();
+                cfg.CreateMap<Light, VirtualHome.Models.Light>();
+                cfg.CreateMap<Resident, VirtualHome.Models.Resident>();
+                cfg.CreateMap<Room, VirtualHome.Models.Room>();
+                });
             //Create Residents
             Resident Janek = new Resident("Janek");
 
             //Init DeviceManager
-            DeviceManager deviceManager = DeviceManager.CreateInstance;
+            DeviceService deviceManager = DeviceService.CreateInstance;
 
             //Define delegates(actions) as routines
             //Action<string> lightColorDefaultSetting = Console.WriteLine;

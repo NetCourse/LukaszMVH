@@ -1,27 +1,47 @@
-﻿using IntelligentHome;
+﻿using AutoMapper;
+using IntelligentHome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VirtualHomeDAL.Repositories;
 
 namespace VirtualHome.Devices
 {
 
-    class DeviceManager
+    class DeviceService
     {
-        private static DeviceManager _instance = new DeviceManager();
+        private static DeviceService _instance = new DeviceService();
         //proteza ze tu nie ma bazy... poki co
         public IList<Device> deviceList = new List<Device>();
-        
-        private DeviceManager()
+        private TVRepository tvRepository = new TVRepository();
+        private LightRepository lightRepository = new LightRepository();
+        private DoorLockRepository doorLockRepository = new DoorLockRepository();
+        private RoomRepository roomRepository = new RoomRepository();
+
+        private DeviceService()
         {
             Console.WriteLine("Device Manager Created");
         }
         //singleton
-        public static DeviceManager CreateInstance => _instance;
+        public static DeviceService CreateInstance => _instance;
 
         public void AssignDevice(Room room, Device device) 
         {
+            var mapper = new Mapper();
+            var deviceType = device.GetType().ToString();
+            switch (deviceType)
+            {
+                case "TV":
+                    tvRepository.Add( device);
+                    break;
+                case "Light":
+
+                    break;
+                default: 
+                    Console.WriteLine($"Not recognized device type, {deviceType}"); 
+                    break;
+            }
             deviceList.Add(device);
             device.Assign(room); 
         }
@@ -56,6 +76,12 @@ namespace VirtualHome.Devices
             }
             return devices.FirstOrDefault() as T;
         }
+        private T GetOne<T> (string name) where T : Device
+            {
+            
+            return null;
+            }
+        
 
     }
 }

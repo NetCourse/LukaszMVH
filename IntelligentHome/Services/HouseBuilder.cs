@@ -30,7 +30,7 @@ namespace VirtualHome.BLL
 
         public HouseBuilder EquipAllRooms(string deviceType)
         {
-            DeviceManager deviceManager = DeviceManager.CreateInstance;
+            DeviceService deviceManager = DeviceService.CreateInstance;
             foreach (Room room in _home)
             {
                 switch (deviceType.ToLower())

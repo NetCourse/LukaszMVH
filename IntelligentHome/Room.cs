@@ -10,7 +10,7 @@ namespace IntelligentHome
     class Room
     {
         public string Name { get; }
-        static DeviceManager deviceManager = DeviceManager.CreateInstance;
+        static DeviceService deviceManager = DeviceService.CreateInstance;
         public Rooms Type { get; }
 
         public Room(string name, Rooms type)

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using VirtualHome.Devices;
+using VirtualHomeDAL.Repositories;
 
 namespace VirtualHome.BLL
 {
-    class ResidentManager
+    class ResidentService
     {
-        DeviceManager deviceManager = DeviceManager.CreateInstance;
+        DeviceService deviceService = DeviceService.CreateInstance;
+        private ResidentRepository residentService = new ResidentRepository();
 
-        private ResidentManager()
+        private ResidentService()
         {
             Console.WriteLine("ResidentObserver initialized");
         }
